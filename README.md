@@ -11,7 +11,7 @@ npx create-next-app my-project
 cd my-project
 ```
 
--Install Tailwind CSS
+- Install Tailwind CSS
 
 ```terminal
 npx create-next-app my-project
