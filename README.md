@@ -12,7 +12,7 @@ A next JS app.
 
 #### Configure your template paths, `tailwind.config.js`
 
-```js
+```
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
