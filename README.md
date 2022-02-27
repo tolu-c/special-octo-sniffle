@@ -1,18 +1,26 @@
 # special-octo-sniffle
-A next JS app.
 
-### Installation Guide
+A Next JS app with Tailwind CSS.
 
-#### `Terminal`
+## Installation Guide
 
-- `npx create-next-app my-project`
-- `cd my-project`
-- `npm install -D tailwindcss postcss autoprefixer`
-- `npx tailwindcss init -p`
+- Create your project
 
-#### Configure your template paths, `tailwind.config.js`
-
+```terminal
+npx create-next-app my-project
+cd my-project
 ```
+
+-Install Tailwind CSS
+
+```terminal
+npx create-next-app my-project
+cd my-project
+```
+
+- Configure your template paths, `tailwind.config.js`
+
+```js
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -22,5 +30,31 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+}
+```
+
+- Add the Tailwind directives to your CSS - `./styles/globals.css`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+- Start your build process
+
+```terminal
+npm run dev
+```
+
+- Start using Tailwind in your project `index,js`
+
+```jsx
+export default function Home() {
+  return (
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+  )
 }
 ```
