@@ -1,3 +1,3 @@
 export default function PageNotFound() {
-    return <h1>this page is missong</h1>
+    return <h1>this page is missing</h1>
 }
