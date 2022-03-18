@@ -1,3 +1,13 @@
+import { getFeaturedEvents } from '../dummy-data'
+
 export default function Home() {
-  return <h1 className="text-3xl font-bold text-blue-800 underline">HellThe home page</h1>;
+  const featuredEvents = getFeaturedEvents()
+
+  return (
+    <div>
+      <h1 className="">
+        HellThe home page
+      </h1>
+    </div>
+  );
 }
