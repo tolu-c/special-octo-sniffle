@@ -1,6 +1,8 @@
 function EventDetailPage() {
   return (
-    <div>EventDetailPage</div>
+    <div className='bg-teal-100 h-screen'>
+      <h1>Event Detail</h1>
+    </div>
   )
 }
 
