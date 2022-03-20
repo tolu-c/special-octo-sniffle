@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1 className="">
+      <h1 className="bg-teal-100 h-screen flex justify-center items-center">
         <EventList items={featuredEvents} />
       </h1>
     </div>
