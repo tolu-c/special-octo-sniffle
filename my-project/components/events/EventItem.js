@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from '../ui/Button'
 
 function EventItem(props) {
   const { title, image, date, location, id } = props;
@@ -36,8 +37,8 @@ function EventItem(props) {
           </div>
         </div>
 
-        <div className="text-gray-600 hover:text-blue-800 hover:underline mt-8 hover:font-medium text-base font-normal text-right">
-          <Link href={exploreLink}>Explore Event</Link>
+        <div className="text-gray-600 hover:text-blue-800 hover:underline mt-8 hover:font-medium text-base font-normal text-right capitalize">
+          <Button link={exploreLink}>Explore events</Button>
         </div>
       </div>
     </li>
