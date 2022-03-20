@@ -1,11 +1,15 @@
-import EventList from "../../components/events/EventList"
-import { getAllEvents } from "../../dummy-data"
+import { Fragment } from "react";
+import EventList from "../../components/events/EventList";
+import EventSearch from "../../components/events/EventSearch";
+import { getAllEvents } from "../../dummy-data";
 
 export default function EventsPage() {
-  const events = getAllEvents()
+  const events = getAllEvents();
+
   return (
-    <div className="bg-teal-100 h-screen flex justify-center items-center">
-      <EventList items={events} />
-    </div>
+    <Fragment>
+        <EventSearch />
+        <EventList items={events} />
+    </Fragment>
   );
 }
