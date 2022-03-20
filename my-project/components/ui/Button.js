@@ -3,7 +3,7 @@ import Link from "next/link";
 function Button(props) {
   return (
     <Link href={props.link}>
-      <a className='bg-teal-500 text-white capitalize font-light text-base px-6 py-2 rounded-md flex-initial shadow-md hover:font-normal justify-center items-center'>{props.children}</a>
+      <a className='bg-teal-500 text-white capitalize flex justify-center items-center rounded-md px-6 py-2 w-auto space-x-2 flex-1'>{props.children}</a>
     </Link>
   );
 }

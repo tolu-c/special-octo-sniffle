@@ -15,18 +15,18 @@ function EventItem(props) {
   // icons => location, calendar, arrow-right
 
   return (
-    <li className="border rounded-md h-52 shadow-lg grid grid-cols-5 overflow-hidden">
+    <li className="border rounded-md h-auto w-full shadow-lg grid grid-cols-5 overflow-hidden">
       <img
         src={"/" + image}
         alt={title}
-        className="w-full h-full object-cover col-span-2"
+        className="w-full h-48 object-cover col-span-2"
       />
-      <div className="bg-white text-stone-700 p-3 col-span-3 w-full">
-        <div>
+      <div className="bg-white text-stone-700 p-2 col-span-3 w-full">
+        <div className=''>
           <h2 className="text-xl capitalize font-medium mb-3 text-stone-800">
             {title}
           </h2>
-          <div>
+          <div className="flex items-center text-stone-600">
             <svg
               className="h-6 w-6"
               fill="none"
@@ -40,11 +40,11 @@ function EventItem(props) {
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <time className="font-bold text-base text-stone-500">
+            <time className="font-bold text-base text-stone-500 ml-3">
               {humanReadableDate}
             </time>
           </div>
-          <div className="mt-3">
+          <div className="mt-3 flex items-center text-stone-600">
             <svg
               className="h-6 w-6"
               fill="none"
@@ -63,17 +63,18 @@ function EventItem(props) {
                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
               />
             </svg>
-            <address className="text-base font-medium">
+            <address className="text-base font-medium ml-3">
               {formattedAddress}
             </address>
           </div>
         </div>
 
-        <div className="text-right mt-10">
+        <div className=" flex justify-end">
           <Button link={exploreLink}>
-            <span>
+            <span>Explore events</span>
+            <span className='text-white'>
               <svg
-                className="h-6 w-6"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -86,7 +87,6 @@ function EventItem(props) {
                 />
               </svg>
             </span>
-            <span>Explore events</span>
           </Button>
         </div>
       </div>
