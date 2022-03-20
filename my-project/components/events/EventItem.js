@@ -14,13 +14,13 @@ function EventItem(props) {
   const exploreLink = `/events/${id}`;
 
   return (
-    <li className="border rounded-md h-48 shadow-lg grid grid-cols-5 overflow-hidden">
+    <li className="border rounded-md h-52 shadow-lg grid grid-cols-5 overflow-hidden">
       <img
         src={"/" + image}
         alt={title}
         className="w-full h-full object-cover col-span-2"
       />
-      <div className="bg-white text-stone-700 p-3 col-span-3 w-full">
+      <div className="bg-white text-stone-700 p-3 col-span-3 w-full relative">
         <div>
           <h2 className="text-xl capitalize font-medium mb-3 text-stone-800">
             {title}
@@ -37,7 +37,7 @@ function EventItem(props) {
           </div>
         </div>
 
-        <div className="text-right mt-4">
+        <div className="text-right mt-10">
           <Button link={exploreLink}>Explore events</Button>
         </div>
       </div>
