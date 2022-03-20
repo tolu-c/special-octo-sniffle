@@ -37,7 +37,7 @@ function EventItem(props) {
           </div>
         </div>
 
-        <div className="text-gray-600 hover:text-blue-800 hover:underline mt-8 hover:font-medium text-base font-normal text-right capitalize">
+        <div className="text-right mt-4">
           <Button link={exploreLink}>Explore events</Button>
         </div>
       </div>
