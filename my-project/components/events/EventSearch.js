@@ -1,14 +1,28 @@
 import Button from '../ui/Button'
+import { useRef } from 'react'
 
 function EventSearch(props) {
+  const yearInputRef = useRef()
+  const monthInputRef = useRef();
+
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    const selectedYear = yearInputRef.current.value
+    const selectedMonth = monthInputRef.current.value;
+    // console.log(`selectedYear: ${selectedYear} and selectedMonth: ${selectedMonth}`);
+
+    props.onSearch(selectedYear, selectedMonth);
+  }
+
   return (
-    <form className="my-4 flex items-center bg-white shadow-lg rounded-md mx-auto max-w-xl h-16 border px-4">
+    <form className="my-4 flex items-center bg-white shadow-lg rounded-md mx-auto max-w-xl h-16 border px-4" onSubmit={handleSubmit}>
       <div className="flex items-center flex-auto justify-around">
         <div className="flex items-center">
           <label htmlFor="year" className="text-base font-semibold mr-4">
             Year
           </label>
-          <select id="year" className="rounded-md h-10 w-32 text-sm">
+          <select id="year" className="rounded-md h-10 w-32 text-sm" ref={yearInputRef}>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
           </select>
@@ -18,7 +32,7 @@ function EventSearch(props) {
           <label htmlFor="month" className="text-base font-semibold mr-4">
             Month
           </label>
-          <select id="month" className="rounded-md h-10 w-32 text-sm">
+          <select id="month" className="rounded-md h-10 w-32 text-sm" ref={monthInputRef}>
             <option value="1">January</option>
             <option value="2">February</option>
             <option value="3">March</option>
