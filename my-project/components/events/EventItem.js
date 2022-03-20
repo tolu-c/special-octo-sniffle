@@ -20,7 +20,7 @@ function EventItem(props) {
         alt={title}
         className="w-full h-full object-cover col-span-2"
       />
-      <div className="bg-white text-stone-700 p-3 col-span-3 w-full relative">
+      <div className="bg-white text-stone-700 p-3 col-span-3 w-full">
         <div>
           <h2 className="text-xl capitalize font-medium mb-3 text-stone-800">
             {title}
