@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
+import { Fragment } from "react";
 import EventList from "../../components/events/EventList";
+import ResultsTitle from "../../components/events/ResultsTitle";
 import { getFilteredEvents } from "../../dummy-data";
 
 function FilteredEventsPage() {
@@ -46,10 +48,13 @@ function FilteredEventsPage() {
     );
   }
 
+  const date = new Date(numYear, numMonth - 1)
+
   return (
-    <div className="bg-teal-100 h-screen flex justify-center items-center">
-      <EventList items={filteredEvents} />
-    </div>
+    <Fragment>
+        <ResultsTitle date={date} />
+        <EventList items={filteredEvents} />
+    </Fragment>
   );
 }
 
