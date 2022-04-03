@@ -5,10 +5,10 @@ import path from "path";
 export default function ProductDetailPage(props) {
   const { loadedProduct } = props;
 
-  if (!loadedProduct) {
-      return <p>Loading...</p>
-  }
-  
+//   if (!loadedProduct) {
+//       return <p>Loading...</p>
+//   }
+
   return (
     <Fragment>
       <h1>{loadedProduct.title}</h1>
@@ -42,6 +42,6 @@ export async function getStaticPaths() {
     //   { params: { id: "p2" } },
     //   { params: { id: "p3" } },
     ],
-    fallback: true,
+    fallback: 'blocking',
   };
 }
