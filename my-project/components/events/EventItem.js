@@ -1,4 +1,5 @@
 import Button from "../ui/Button";
+import Image from 'next/image'
 
 function EventItem(props) {
   const { title, image, date, location, id } = props;
