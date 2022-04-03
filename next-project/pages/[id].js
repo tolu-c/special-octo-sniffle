@@ -4,6 +4,11 @@ import path from "path";
 
 export default function ProductDetailPage(props) {
   const { loadedProduct } = props;
+
+  if (!loadedProduct) {
+      return <p>Loading...</p>
+  }
+  
   return (
     <Fragment>
       <h1>{loadedProduct.title}</h1>
@@ -34,9 +39,9 @@ export async function getStaticPaths() {
   return {
     paths: [
       { params: { id: "p1" } },
-      { params: { id: "p2" } },
-      { params: { id: "p3" } },
+    //   { params: { id: "p2" } },
+    //   { params: { id: "p3" } },
     ],
-    fallback: false,
+    fallback: true,
   };
 }
