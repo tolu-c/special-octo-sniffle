@@ -10,7 +10,7 @@ export default function LastSalesPage() {
 
   useEffect(() => {
     if (data) {
-      const transformedSales = []
+      const transformedSales = [];
 
       for (const key in data) {
         transformedSales.push({
@@ -20,10 +20,9 @@ export default function LastSalesPage() {
         });
       }
 
-      setSales(transformedSales)
+      setSales(transformedSales);
     }
-  }, [data])
-  console.log(sales);
+  }, [data]);
 
   // useEffect(() => {
   //   setIsLoading(true)
@@ -43,11 +42,11 @@ export default function LastSalesPage() {
   // }, [])
 
   if (error) {
-    return <p>Failed to load data.</p>
+    return <p>Failed to load.</p>;
   }
 
-  if (!data || !sales) {
-    return <p>Loading your data.. Hang in there for a second.</p>
+  if (!data && !sales) {
+    return <p>Loading...</p>;
   }
 
   return (
@@ -58,5 +57,5 @@ export default function LastSalesPage() {
         </li>
       ))}
     </ul>
-  )
+  );
 }
