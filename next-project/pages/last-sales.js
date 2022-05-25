@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react"
-import useSWR from 'swr'
+import { useEffect, useState } from "react";
+import useSWR from "swr";
 
-export default function LastSalesPage() {
-  const [sales, setSales] = useState()
-  // const [isLoading, setIsLoading] = useState(false)
+function LastSalesPage(props) {
+  const [sales, setSales] = useState(props.sales);
+  // const [isLoading, setIsLoading] = useState(false);
 
-  const { data, error } = useSWR('https://nextjscourse-59cfb-default-rtdb.firebaseio.com/sales.json')
-  console.log(data);
+  const { data, error } = useSWR(
+    "https://nextjscourse-59cfb-default-rtdb.firebaseio.com/sales.json"
+  );
 
   useEffect(() => {
     if (data) {
@@ -25,21 +26,24 @@ export default function LastSalesPage() {
   }, [data]);
 
   // useEffect(() => {
-  //   setIsLoading(true)
-  //   fetch('https://nextjscourse-59cfb-default-rtdb.firebaseio.com/sales.json').then(response => response.json()).then(data => {
-  //     const transformData = []
-  //     for (const key in data) {
-  //       transformData.push({
-  //         id: key,
-  //         username: data[key].username,
-  //         volume: data[key].volume
-  //       })
-  //     }
+  //   setIsLoading(true);
+  //   fetch('https://nextjscourse-59cfb-default-rtdb.firebaseio.com/sales.json')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       const transformedSales = [];
 
-  //     setSales(transformData)
-  //     setIsLoading(false)
-  //   })
-  // }, [])
+  //       for (const key in data) {
+  //         transformedSales.push({
+  //           id: key,
+  //           username: data[key].username,
+  //           volume: data[key].volume,
+  //         });
+  //       }
+
+  //       setSales(transformedSales);
+  //       setIsLoading(false);
+  //     });
+  // }, []);
 
   if (error) {
     return <p>Failed to load.</p>;
@@ -59,3 +63,24 @@ export default function LastSalesPage() {
     </ul>
   );
 }
+
+export async function getStaticProps() {
+  const response = await fetch(
+    "https://nextjscourse-59cfb-default-rtdb.firebaseio.com/sales.json"
+  );
+  const data = await response.json();
+
+  const transformedSales = [];
+
+  for (const key in data) {
+    transformedSales.push({
+      id: key,
+      username: data[key].username,
+      volume: data[key].volume,
+    });
+  }
+
+  return { props: { sales: transformedSales } };
+}
+
+export default LastSalesPage;
