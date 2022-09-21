@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
 
-const buildFilePath = () => path.join(process.cwd(), "data", "feedback.json");
+export const buildFilePath = () => path.join(process.cwd(), "data", "feedback.json");
 
-const readDataFromFilePath = (filePath) => {
+export const readDataFromFilePath = (filePath) => {
   const fileData = fs.readFileSync(filePath);
   const data = JSON.parse(fileData);
   return data;
