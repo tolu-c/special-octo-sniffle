@@ -5,14 +5,18 @@ import ResultsTitle from "../../components/events/results-title";
 import Button from "../../components/ui/button";
 import ErrorAlert from "../../components/ui/error-alert";
 import useSwr from "swr";
+import Head from "next/head";
 
 function FilteredEventsPage() {
   const [loadedEvents, setLoadedEvents] = useState();
   const router = useRouter();
   const filterData = router.query.slug;
 
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
   const { data, error } = useSwr(
-    "https://nextjscourse-59cfb-default-rtdb.firebaseio.com/events.json"
+    "https://nextjscourse-59cfb-default-rtdb.firebaseio.com/events.json",
+    fetcher
   );
 
   useEffect(() => {
@@ -84,6 +88,13 @@ function FilteredEventsPage() {
 
   return (
     <Fragment>
+      <Head>
+        <title>Filtered Events</title>
+        <meta
+          name="description"
+          content={`All events for ${numMonth}/${numYear}`}
+        />
+      </Head>
       <ResultsTitle date={newDate} />
       <EventList items={filteredEvents} />
     </Fragment>
