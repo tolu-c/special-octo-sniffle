@@ -6,9 +6,11 @@ function HomePage() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    
+
     const enteredEmail = emailRef.current.value;
     const enteredFeedback = feedbackRef.current.value;
+
+    fetch('')
   };
 
   return (
