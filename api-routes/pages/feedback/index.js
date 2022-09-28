@@ -12,6 +12,7 @@ const FeedBackPage = ({ feedbackItems }) => {
 
   return (
     <Fragment>
+      {feedbackData && <p>{feedbackData.email}</p>}
       <ul>
         {feedbackItems.map((feedbackItem) => (
           <li key={feedbackItem.id}>
