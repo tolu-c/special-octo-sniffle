@@ -1,10 +1,10 @@
 import classes from "./comment-list.module.css";
 
-function CommentList({ comments }) {
-  console.log({ comments });
+function CommentList({ items }) {
+  console.log({ items });
   return (
     <ul className={classes.comments}>
-      {comments.map((comment) => {
+      {items?.map((comment) => {
         return (
           <li key={comment.id}>
             <p>{comment.text}</p>
