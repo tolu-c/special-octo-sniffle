@@ -1,4 +1,7 @@
-export default function handler(req, res) {
+import { MongoClient } from "mongodb";
+const uri = process.env.MONGO_DB_URI;
+
+export default async function handler(req, res) {
   if (req.method === "POST") {
     const email = req.body.enteredEmail;
 
@@ -7,7 +10,11 @@ export default function handler(req, res) {
       return;
     }
 
-    console.log(email);
+    const client = await MongoClient.connect(uri);
+    const db = client.db();
+    await db.collection("emails").insertOne({ email: email });
+
+    client.close();
     res.status(201).json({ message: "Signed up successfully." });
   }
 }
