@@ -1,18 +1,27 @@
-import { MongoClient } from "mongodb";
-const uri = process.env.MONGO_DB_URI;
+import {
+  connectDB,
+  getAllComments,
+  insertDocument,
+} from "../../../helpers/db-utils";
 
 export default async function handler(req, res) {
   const eventID = req.query.eventID;
 
-  const client = await MongoClient.connect(uri);
+  let client;
+  try {
+    client = await connectDB();
+  } catch (error) {
+    res.status(500).json({ message: "Connecting to the database failed!" });
+    return;
+  }
 
   if (req.method === "GET") {
-    const db = client.db("newsletter");
-    const commentsList = await db
-      .collection("comments")
-      .find()
-      .sort({ _id: -1 })
-      .toArray();
+    const commentsList = await getAllComments(
+      client,
+      "comments",
+      { _id: -1 },
+      { eventID: eventID }
+    );
     res.status(200).json({ comments: commentsList });
   }
 
@@ -35,13 +44,16 @@ export default async function handler(req, res) {
         text,
         eventID,
       };
-      console.log(newComment);
 
-      const db = client.db("newsletter");
-      const result = await db.collection("comments").insertOne(newComment);
+      let result;
+      try {
+        result = await insertDocument(client, "comments", newComment);
+        // assign generated id to commentID
+        newComment.id = result.insertedId;
+      } catch (error) {
+        res.status(500).json({ message: "Inserting comment failed!" });
+      }
 
-      // assign generated id to commentID
-      newComment.id = result.insertedId;
       res
         .status(201)
         .json({ message: "Comment created.", comment: newComment });
