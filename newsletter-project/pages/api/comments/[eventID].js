@@ -7,12 +7,13 @@ export default async function handler(req, res) {
   const client = await MongoClient.connect(uri);
 
   if (req.method === "GET") {
-    const dummyList = [
-      { id: "e1", name: "Tolu", text: "A first comment" },
-      { id: "e2", name: "tolu-c", text: "A second comment" },
-      { id: "e3", name: "webDevTolu", text: "A third comment" },
-    ];
-    res.status(200).json({ comments: dummyList });
+    const db = client.db("newsletter");
+    const commentsList = await db
+      .collection("comments")
+      .find()
+      .sort({ _id: -1 })
+      .toArray();
+    res.status(200).json({ comments: commentsList });
   }
 
   if (req.method === "POST") {
@@ -38,8 +39,6 @@ export default async function handler(req, res) {
 
       const db = client.db("newsletter");
       const result = await db.collection("comments").insertOne(newComment);
-
-      console.log({ result });
 
       // assign generated id to commentID
       newComment.id = result.insertedId;
