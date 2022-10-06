@@ -1,5 +1,10 @@
-export default function handler(req, res) {
+import { MongoClient } from "mongodb";
+const uri = process.env.MONGO_DB_URI;
+
+export default async function handler(req, res) {
   const eventID = req.query.eventID;
+
+  const client = await MongoClient.connect(uri);
 
   if (req.method === "GET") {
     const dummyList = [
@@ -24,15 +29,25 @@ export default function handler(req, res) {
       return;
     } else {
       const newComment = {
-        id: new Date().toISOString(),
         name,
         email,
         text,
+        eventID,
       };
       console.log(newComment);
+
+      const db = client.db("newsletter");
+      const result = await db.collection("comments").insertOne(newComment);
+
+      console.log({ result });
+
+      // assign generated id to commentID
+      newComment.id = result.insertedId;
       res
         .status(201)
         .json({ message: "Comment created.", comment: newComment });
     }
   }
+
+  client.close();
 }
