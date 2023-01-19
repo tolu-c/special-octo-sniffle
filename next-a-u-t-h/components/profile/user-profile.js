@@ -1,8 +1,14 @@
-import ProfileForm from './profile-form';
-import classes from './user-profile.module.css';
+import { useSession } from "next-auth/react";
+import ProfileForm from "./profile-form";
+import classes from "./user-profile.module.css";
 
 function UserProfile() {
   // Redirect away if NOT auth
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
 
   return (
     <section className={classes.profile}>
