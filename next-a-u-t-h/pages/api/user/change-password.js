@@ -43,9 +43,11 @@ export default async function handler(req, res) {
   }
 
   // set password to new password
-  const result = await user.updateOne(
+  const hashedNewPassword = await hashPassword(newPassword);
+  const collection = await db.collection("members");
+  const result = await collection.updateOne(
     { email: userEmail },
-    { $set: { password: hashPassword(newPassword) } }
+    { $set: { password: hashedNewPassword } }
   );
 
   client.close();
